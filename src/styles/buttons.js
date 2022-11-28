@@ -4,15 +4,21 @@ export const Button = styled.button`
   padding: 0 20px;
   border: none;
   border-radius: 8px;
-  background-color: #27ae60;
+  background-color: var(--color-primary);
   height: 40px;
-  color: #ffff;
+  color: var(--grey-0);
+  :hover {
+    background-color: var(--color-primary-2);
+  }
 `;
 
 export const StyledButtonRemove = styled.button`
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-3);
   color: var(--grey-50);
+  :hover {
+    text-decoration-line: underline;
+  }
 `;
 
 export const StyleButtonRemoverAll = styled.button`
@@ -21,4 +27,8 @@ export const StyleButtonRemoverAll = styled.button`
   border-radius: var(--border-radius);
   background-color: var(--grey-20);
   color: var(--grey-50);
+  :hover {
+    background-color: var(--grey-50);
+    color: var(--grey-20);
+  }
 `;

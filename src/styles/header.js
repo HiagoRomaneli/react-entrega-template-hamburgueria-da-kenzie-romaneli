@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Header = styled.header`
+export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -34,6 +34,9 @@ export const Header = styled.header`
     position: absolute;
     top: 10px;
     right: 10px;
+    :hover {
+      background-color: var(--color-primary-2);
+    }
   }
 
   @media (max-width: 768px) {

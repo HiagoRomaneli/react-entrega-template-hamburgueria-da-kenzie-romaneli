@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Cart } from "./components/Cart";
+import { Header } from "./components/Header";
 import { ProductsList } from "./components/PoductsList";
 import { api } from "./services/api";
-import { Header } from "./styles/header";
-import logo from "./assets/img/logo.svg";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -48,19 +47,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header>
-        <h1>
-          <img src={logo} alt="logotipo" />
-        </h1>
-        <div>
-          <input
-            type="text"
-            onChange={(event) => setInputValue(event.target.value)}
-            placeholder="Digite sua pesquisa"
-          />
-          <button onClick={() => filterProducts()}>Pesquisar</button>
-        </div>
-      </Header>
+      <Header setInputValue={setInputValue} filterProducts={filterProducts} />
       <main>
         <ProductsList
           products={filteredList.length > 0 ? filteredList : products}
