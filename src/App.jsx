@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import "./App.css";
 import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
 import { ProductsList } from "./components/PoductsList";
 import { api } from "./services/api";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -25,9 +27,11 @@ const App = () => {
 
   const filterProducts = () => {
     const search = inputValue.toLowerCase();
-    const productsFilter = products.filter((element) => {
-      return element.category.toLowerCase().includes(search);
-    });
+    const productsFilter = products.filter(
+      (element) =>
+        element.category.toLowerCase().includes(search) ||
+        element.name.toLowerCase().includes(search)
+    );
     setFilteredList(productsFilter);
   };
 
@@ -39,7 +43,7 @@ const App = () => {
     );
 
     if (verification) {
-      return "ja existe o item";
+      toast("Item já incluso no carrinho!");
     } else {
       return setCurrentSale([...currentSale, product]);
     }
@@ -55,6 +59,18 @@ const App = () => {
         />
         <Cart currentSale={currentSale} setCurrentSale={setCurrentSale} />
       </main>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
