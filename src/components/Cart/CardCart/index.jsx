@@ -1,7 +1,6 @@
-import {
-  StyleButtonRemoverAll,
-  StyledButtonRemove,
-} from "../../../styles/buttons";
+import { useContext } from "react";
+import { ProductsContext } from "../../../Contexts/PorductsContext";
+import { StyleButtonGrey, StyledButtonRemove } from "../../../styles/buttons";
 import {
   StyledH4,
   StyledParagraphValueGrey,
@@ -9,12 +8,10 @@ import {
 } from "../../../styles/typography";
 import { StyledLIstCart, StyledSpanTotalValue } from "../cart";
 
-export const Card = ({
-  currentSale,
-  removeProduct,
-  setCurrentSale,
-  totalPrice,
-}) => {
+export const CardCart = () => {
+  const { currentSale, setCurrentSale, removeProduct, totalPrice } =
+    useContext(ProductsContext);
+
   return (
     <div>
       <StyledLIstCart>
@@ -44,9 +41,9 @@ export const Card = ({
           </StyledParagraphValueGrey>
         </div>
         <div>
-          <StyleButtonRemoverAll onClick={() => setCurrentSale([])}>
+          <StyleButtonGrey onClick={() => setCurrentSale([])}>
             Remover todos
-          </StyleButtonRemoverAll>
+          </StyleButtonGrey>
         </div>
       </StyledSpanTotalValue>
     </div>

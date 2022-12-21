@@ -8,11 +8,13 @@ export const GlobalStyle = createGlobalStyle`
 
   --color-primary: #27AE60;
   --color-primary-2: #93D7AF;
+  --color-primary-3: #27AE6010;
   --color-secondary: #EB5757;
  
   --grey-100: #333333;
   --grey-50: #828282;
   --grey-20: #E0E0E0;
+  --grey-10: #999999;
   --grey-0: #F5F5F5;
 
   --color-negative: #E60000;
@@ -77,5 +79,11 @@ main {
     h1, h2, h3, h4, h5, h6, p, a, span, li, button, input{
         font-family: 'Inter', sans-serif;
     }
+
+    @media (max-width: 680px) {
+    .div-logo {
+      display: none;
+    }
+  }
 
 `;

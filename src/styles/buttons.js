@@ -21,7 +21,7 @@ export const StyledButtonRemove = styled.button`
   }
 `;
 
-export const StyleButtonRemoverAll = styled.button`
+export const StyleButtonGrey = styled.button`
   height: 60px;
   width: 100%;
   border-radius: var(--border-radius);

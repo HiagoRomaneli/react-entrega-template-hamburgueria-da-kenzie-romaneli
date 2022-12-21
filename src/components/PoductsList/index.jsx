@@ -1,12 +1,10 @@
 import { Product } from "../Product";
 import { StyledListProducts } from "./ProductsList";
 
-export const ProductsList = ({ products, handleClick }) => {
+export const ProductsList = () => {
   return (
     <StyledListProducts>
-      {products.map((element, index) => (
-        <Product key={index} element={element} handleClick={handleClick} />
-      ))}
+      <Product />
     </StyledListProducts>
   );
 };

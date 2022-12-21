@@ -29,3 +29,9 @@ export const StyledParagraphValueGrey = styled.p`
   font-weight: var(--font-weight-2);
   color: var(--grey-50);
 `;
+
+export const StyledError = styled.p`
+  color: var(--color-negative);
+  text-align: center;
+  margin: 0;
+`;

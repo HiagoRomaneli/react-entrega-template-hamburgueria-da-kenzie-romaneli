@@ -1,19 +1,11 @@
+import { useContext } from "react";
+import { ProductsContext } from "../../Contexts/PorductsContext";
 import { StyledSmall } from "../../styles/typography";
-import { Card } from "./CardCart";
+import { CardCart } from "./CardCart";
 import { StyledCart, StyleNotFound } from "./cart";
 
-export const Cart = ({ currentSale, setCurrentSale }) => {
-  const totalPrice = currentSale.reduce((acc, currentValue) => {
-    return acc + currentValue.price;
-  }, 0);
-
-  const removeProduct = (productSelect) => {
-    const product = currentSale.filter((element) => {
-      return element !== productSelect;
-    });
-
-    setCurrentSale(product);
-  };
+export const Cart = () => {
+  const { currentSale } = useContext(ProductsContext);
 
   return (
     <StyledCart>
@@ -26,12 +18,7 @@ export const Cart = ({ currentSale, setCurrentSale }) => {
           <StyledSmall>Adicione itens</StyledSmall>
         </StyleNotFound>
       ) : (
-        <Card
-          totalPrice={totalPrice}
-          currentSale={currentSale}
-          removeProduct={removeProduct}
-          setCurrentSale={setCurrentSale}
-        />
+        <CardCart />
       )}
     </StyledCart>
   );

@@ -8,12 +8,35 @@ export const StyledHeader = styled.header`
   min-height: 5rem;
   background-color: var(--grey-0);
 
-  input {
-    width: 22.8125rem;
-    height: 60px;
-    border: 2px solid var(--grey-20);
-    border-radius: var(--border-radius);
-    padding: 0 0.9375rem;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    div {
+      input {
+        width: 22.8125rem;
+        height: 60px;
+        border: 2px solid var(--grey-20);
+        border-radius: var(--border-radius);
+        padding: 0 0.9375rem;
+      }
+
+      button {
+        padding: 0 1.25rem;
+        border: none;
+        border-radius: var(--border-radius);
+        background-color: var(--color-primary);
+        height: 40px;
+        color: var(--grey-0);
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        :hover {
+          background-color: var(--color-primary-2);
+        }
+      }
+    }
   }
 
   div {
@@ -21,21 +44,6 @@ export const StyledHeader = styled.header`
 
     @media (max-width: 425px) {
       width: 90%;
-    }
-  }
-
-  button {
-    padding: 0 1.25rem;
-    border: none;
-    border-radius: var(--border-radius);
-    background-color: var(--color-primary);
-    height: 40px;
-    color: var(--grey-0);
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    :hover {
-      background-color: var(--color-primary-2);
     }
   }
 
