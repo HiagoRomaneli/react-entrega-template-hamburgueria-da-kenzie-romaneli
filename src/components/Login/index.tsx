@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SchemaLogin } from "./SchemaLogin";
 import { StyledError } from "../../styles/typography";
+import { Idata, Iregister } from "../../Contexts/UserContext";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<Iregister>({
     resolver: yupResolver(SchemaLogin),
   });
 
@@ -25,7 +26,7 @@ export const Login = () => {
     navigate("/register");
   };
 
-  const onSubmitForm = async (data) => {
+  const onSubmitForm = async (data: Idata) => {
     try {
       const response = await api.post("login", data);
       toast.success("Login realizado com sucesso!");
@@ -47,6 +48,7 @@ export const Login = () => {
             type={"email"}
             placeholder={"Digite seu email aqui..."}
             register={register("email")}
+            id={"email"}
           />
           {errors.email && <StyledError>{errors.email.message}</StyledError>}
           <Input
@@ -54,6 +56,7 @@ export const Login = () => {
             type={"password"}
             placeholder={"Digite sua senha aqui..."}
             register={register("password")}
+            id={"password"}
           />
           {errors.password && (
             <StyledError>{errors.password.message}</StyledError>

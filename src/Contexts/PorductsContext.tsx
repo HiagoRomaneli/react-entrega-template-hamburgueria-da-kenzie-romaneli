@@ -5,11 +5,39 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
 
-export const ProductsContext = createContext({});
+interface IproductsContextProps {
+  children: React.ReactNode;
+}
 
-export const ProductsProviders = ({ children }) => {
-  const [products, setProducts] = useState([]);
-  const [currentSale, setCurrentSale] = useState([]);
+interface IproductsProps {
+  products: Iproducts[];
+  setProducts: React.Dispatch<React.SetStateAction<Iproducts[]>>;
+  currentSale: Iproducts[];
+  setCurrentSale: React.Dispatch<React.SetStateAction<Iproducts[]>>;
+  filteredList: Iproducts[];
+  setFilteredList: React.Dispatch<React.SetStateAction<Iproducts[]>>;
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  filterProducts: () => void;
+  handleClick: (productId: number) => void;
+  totalPrice: number;
+  removeProduct: (productSelect: Iproducts) => void;
+  logout: () => void;
+}
+
+interface Iproducts {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+}
+
+export const ProductsContext = createContext({} as IproductsProps);
+
+export const ProductsProviders = ({ children }: IproductsContextProps) => {
+  const [products, setProducts] = useState([] as Iproducts[]);
+  const [currentSale, setCurrentSale] = useState([] as Iproducts[]);
   const [filteredList, setFilteredList] = useState(products);
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
@@ -39,7 +67,7 @@ export const ProductsProviders = ({ children }) => {
     setFilteredList(productsFilter);
   };
 
-  const handleClick = (productId) => {
+  const handleClick = (productId: number) => {
     const product = products.find((element) => element.id === productId);
 
     const verification = currentSale.some(
@@ -48,7 +76,7 @@ export const ProductsProviders = ({ children }) => {
 
     if (verification) {
       toast("Item já incluso no carrinho!");
-    } else {
+    } else if (product !== undefined) {
       return setCurrentSale([...currentSale, product]);
     }
   };
@@ -57,7 +85,7 @@ export const ProductsProviders = ({ children }) => {
     return acc + currentValue.price;
   }, 0);
 
-  const removeProduct = (productSelect) => {
+  const removeProduct = (productSelect: Iproducts) => {
     const product = currentSale.filter((element) => {
       return element !== productSelect;
     });

@@ -1,7 +1,7 @@
 import { StyledLogoDiv } from "./logo";
-import imgLogo from "../../assets/img/logo.svg";
+import imgLogo from "../../assets/img/logoo.png";
 import imgBag from "../../assets/img/shopping-bag.png";
-import imgPoints from "../../assets/img/Group135.png";
+import imgPoints from "../../assets/img/Ground135.png";
 
 export const Logo = () => {
   return (

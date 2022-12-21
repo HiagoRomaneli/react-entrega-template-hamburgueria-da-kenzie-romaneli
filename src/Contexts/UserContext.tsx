@@ -4,10 +4,27 @@ import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
+interface IuserContextProps {
+  children: React.ReactNode;
+}
+
+export interface Iregister {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
+
+export interface Idata {
+  name?: string;
+  email: string;
+  password: string;
+  passwordConfirm?: string;
+}
+
 export const UserContext = createContext({});
 
-export const UserProvider = ({ children }) => {
-  const [login, setLogin] = useState(false);
+export const UserProvider = ({ children }: IuserContextProps) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -19,7 +36,6 @@ export const UserProvider = ({ children }) => {
       if (token) {
         try {
           await api.get("products");
-          setLogin(true);
           navigate("/dashboard");
         } catch (error) {
           window.localStorage.clear();
@@ -33,7 +49,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ login, setLogin, loading, setLoading }}>
+    <UserContext.Provider value={{ loading, setLoading }}>
       {children}
     </UserContext.Provider>
   );
