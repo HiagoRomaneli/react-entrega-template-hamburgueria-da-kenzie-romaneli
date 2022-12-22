@@ -17,7 +17,7 @@ export const StyledDivInputs = styled.div`
     }
 
     :focus:required:invalid {
-      border: 2px solid var();
+      border: 2px solid var(--color-secondary);
     }
   }
   label {
