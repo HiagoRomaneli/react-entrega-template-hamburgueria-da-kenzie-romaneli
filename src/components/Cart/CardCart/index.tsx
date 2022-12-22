@@ -1,16 +1,18 @@
 import { useContext } from "react";
-import { ProductsContext } from "../../../Contexts/PorductsContext";
+import { CartContext } from "../../../Contexts/CartContext";
 import { StyleButtonGrey, StyledButtonRemove } from "../../../styles/buttons";
-import {
-  StyledH4,
-  StyledParagraphValueGrey,
-  StyledSmall,
-} from "../../../styles/typography";
+import { StyledH4, StyledParagraphValueGrey } from "../../../styles/typography";
 import { StyledLIstCart, StyledSpanTotalValue } from "../cart";
 
 export const CardCart = () => {
-  const { currentSale, setCurrentSale, removeProduct, totalPrice } =
-    useContext(ProductsContext);
+  const {
+    currentSale,
+    setCurrentSale,
+    removeProduct,
+    totalPrice,
+    addQuantityProductsCart,
+    removeQuantityProductsCart,
+  } = useContext(CartContext);
 
   return (
     <div>
@@ -21,7 +23,17 @@ export const CardCart = () => {
               <img src={product.img} alt="" />
               <div>
                 <StyledH4>{product.name}</StyledH4>
-                <StyledSmall>{product.category}</StyledSmall>
+                <div className="div-count">
+                  <button
+                    onClick={() => removeQuantityProductsCart(product.id)}
+                  >
+                    -
+                  </button>
+                  <span>{product.qntd}</span>
+                  <button onClick={() => addQuantityProductsCart(product.id)}>
+                    +
+                  </button>
+                </div>
               </div>
             </div>
             <StyledButtonRemove onClick={() => removeProduct(product)}>
@@ -34,7 +46,7 @@ export const CardCart = () => {
         <div>
           <h5>Total:</h5>
           <StyledParagraphValueGrey>
-            {totalPrice.toLocaleString("pt-BR", {
+            {totalPrice().toLocaleString("pt-BR", {
               style: "currency",
               currency: "BRL",
             })}

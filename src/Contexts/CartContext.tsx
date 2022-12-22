@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { api } from "../services/api";
 
 interface IproductsContextProps {
@@ -20,9 +19,13 @@ interface IproductsProps {
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   filterProducts: () => void;
   handleClick: (productId: number) => void;
-  totalPrice: number;
+  totalPrice: () => number;
   removeProduct: (productSelect: Iproducts) => void;
   logout: () => void;
+  modal: boolean;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  addQuantityProductsCart: (productId: number) => void;
+  removeQuantityProductsCart: (productId: number) => void;
 }
 
 interface Iproducts {
@@ -31,15 +34,17 @@ interface Iproducts {
   category: string;
   price: number;
   img: string;
+  qntd: number;
 }
 
-export const ProductsContext = createContext({} as IproductsProps);
+export const CartContext = createContext({} as IproductsProps);
 
-export const ProductsProviders = ({ children }: IproductsContextProps) => {
+export const CartProviders = ({ children }: IproductsContextProps) => {
   const [products, setProducts] = useState([] as Iproducts[]);
   const [currentSale, setCurrentSale] = useState([] as Iproducts[]);
   const [filteredList, setFilteredList] = useState(products);
   const [inputValue, setInputValue] = useState("");
+  const [modal, setModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,23 +79,55 @@ export const ProductsProviders = ({ children }: IproductsContextProps) => {
       (element) => element.id === productId
     );
 
-    if (verification) {
-      toast("Item já incluso no carrinho!");
+    if (verification && product !== undefined) {
+      product.qntd++;
     } else if (product !== undefined) {
-      return setCurrentSale([...currentSale, product]);
+      product.qntd = 1;
+      setCurrentSale([...currentSale, product]);
     }
   };
 
-  const totalPrice = currentSale.reduce((acc, currentValue) => {
-    return acc + currentValue.price;
-  }, 0);
+  const addQuantityProductsCart = (productId: number) => {
+    const product = currentSale.find((element) => element.id === productId);
+
+    if (product !== undefined) {
+      product.qntd++;
+      setCurrentSale([...currentSale]);
+    }
+    console.log(currentSale);
+  };
+
+  const removeQuantityProductsCart = (productId: number) => {
+    const product = currentSale.find((element) => element.id === productId);
+
+    if (product !== undefined) {
+      product.qntd--;
+      setCurrentSale([...currentSale]);
+    }
+
+    if (product?.qntd === 0) {
+      removeProduct(product);
+    }
+  };
+
+  const totalPrice = () => {
+    const pricesProducts = currentSale.map(
+      (product) => product.price * product.qntd
+    );
+
+    const total = pricesProducts.reduce((acc, currentValue) => {
+      return acc + currentValue;
+    });
+
+    return total;
+  };
 
   const removeProduct = (productSelect: Iproducts) => {
-    const product = currentSale.filter((element) => {
+    const products = currentSale.filter((element) => {
       return element !== productSelect;
     });
 
-    setCurrentSale(product);
+    setCurrentSale(products);
   };
 
   const logout = () => {
@@ -99,7 +136,7 @@ export const ProductsProviders = ({ children }: IproductsContextProps) => {
   };
 
   return (
-    <ProductsContext.Provider
+    <CartContext.Provider
       value={{
         products,
         setProducts,
@@ -114,9 +151,13 @@ export const ProductsProviders = ({ children }: IproductsContextProps) => {
         totalPrice,
         removeProduct,
         logout,
+        modal,
+        setModal,
+        addQuantityProductsCart,
+        removeQuantityProductsCart,
       }}
     >
       {children}
-    </ProductsContext.Provider>
+    </CartContext.Provider>
   );
 };

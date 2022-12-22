@@ -17,7 +17,7 @@ export const SchemaRegister = yup.object().shape({
     .matches(/(?=.*[0-9])/, "Sua senha deve conter ao menos um número")
     .matches(
       /(?=.*[$*&@#])/,
-      "Sua senha deve conter ao menos um caractere especial"
+      "Sua senha deve conter ao menos um caractere especial ( $ * & @ # )"
     ),
   passwordConfirm: yup
     .string()

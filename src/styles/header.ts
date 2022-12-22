@@ -37,6 +37,26 @@ export const StyledHeader = styled.header`
         }
       }
     }
+
+    button {
+      position: relative;
+
+      .cart {
+        position: absolute;
+        top: -14px;
+        left: 26px;
+        font-size: 14px;
+        font-weight: 900;
+        color: var(--grey-0);
+        background-color: var(--color-primary);
+        width: 20px;
+        height: 24px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 
   div {

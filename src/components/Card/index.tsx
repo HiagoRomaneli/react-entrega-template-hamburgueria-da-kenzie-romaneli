@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ProductsContext } from "../../Contexts/PorductsContext";
+import { CartContext } from "../../Contexts/CartContext";
 import { Button } from "../../styles/buttons";
 import {
   StyledH3,
@@ -8,8 +8,7 @@ import {
 } from "../../styles/typography";
 
 export const Card = () => {
-  const { handleClick } = useContext(ProductsContext);
-  const { products, filteredList } = useContext(ProductsContext);
+  const { products, filteredList, handleClick } = useContext(CartContext);
   return (
     <>
       {filteredList.length > 0

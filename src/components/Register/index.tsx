@@ -56,7 +56,7 @@ export const Register = () => {
             placeholder={"Digite seu email"}
             type={"email"}
             id={"email"}
-            label={"Senha"}
+            label={"Email"}
             register={register("email")}
           />
           {errors.email && <StyledError>{errors.email.message}</StyledError>}

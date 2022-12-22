@@ -2,10 +2,12 @@ import logo from "../../assets/img/logo.svg";
 import { StyledHeader } from "../../styles/header";
 import logof from "../../assets/img/logof.png";
 import { useContext } from "react";
-import { ProductsContext } from "../../Contexts/PorductsContext";
+import { CartContext } from "../../Contexts/CartContext";
+import cart from "../../assets/img/cart.png";
 
 export const Header = () => {
-  const { setInputValue, filterProducts, logout } = useContext(ProductsContext);
+  const { setInputValue, filterProducts, logout, setModal, currentSale } =
+    useContext(CartContext);
 
   return (
     <StyledHeader>
@@ -21,6 +23,10 @@ export const Header = () => {
           />
           <button onClick={() => filterProducts()}>Pesquisar</button>
         </div>
+        <button className="btn-cart" onClick={() => setModal(true)}>
+          <img src={cart} alt="imagem de um carrinho" />
+          <span className="cart">{currentSale.length}</span>
+        </button>
         <button onClick={logout}>
           <img src={logof} alt="icone de sair" />
         </button>

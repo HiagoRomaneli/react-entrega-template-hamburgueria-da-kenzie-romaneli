@@ -1,26 +1,10 @@
-import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { ProductsProviders } from "./Contexts/PorductsContext";
-import { DashBoard } from "./pages/DashBoard";
-import { LoginPage } from "./pages/LoginPage";
-import { RegisterPage } from "./pages/RegisterPage";
+import { RoutesPages } from "./components/RoutesPages";
 
 const App = () => {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProductsProviders>
-              <DashBoard />
-            </ProductsProviders>
-          }
-        />
-        <Route path="*" element={<LoginPage />} />
-      </Routes>
+      <RoutesPages />
       <ToastContainer
         position="top-right"
         autoClose={2000}

@@ -4,8 +4,13 @@ import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
-interface IuserContextProps {
+interface IuserContext {
   children: React.ReactNode;
+}
+
+interface IuserContextProps {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface Iregister {
@@ -22,9 +27,9 @@ export interface Idata {
   passwordConfirm?: string;
 }
 
-export const UserContext = createContext({});
+export const UserContext = createContext({} as IuserContextProps);
 
-export const UserProvider = ({ children }: IuserContextProps) => {
+export const UserProvider = ({ children }: IuserContext) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
