@@ -37,6 +37,14 @@ export const StyledLogin = styled.div`
       font-weight: 400;
       color: var(--grey-10);
     }
+
+    button {
+      background-color: var(--color-primary);
+
+      :hover {
+        background-color: var(--color-primary-2);
+      }
+    }
   }
 
   button {

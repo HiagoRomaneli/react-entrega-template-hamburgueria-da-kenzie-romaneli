@@ -4,11 +4,14 @@ export const Button = styled.button`
   padding: 0 20px;
   border: none;
   border-radius: 8px;
-  background-color: var(--color-primary);
+  background-color: var(--grey-50);
   height: 40px;
   color: var(--grey-0);
   :hover {
-    background-color: var(--color-primary-2);
+    background-color: var(--color-primary);
+  }
+  :focus {
+    background-color: var(--color-primary);
   }
 `;
 

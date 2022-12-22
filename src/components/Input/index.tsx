@@ -1,4 +1,5 @@
 import { UseFormRegisterReturn } from "react-hook-form";
+import { StyledDivInputs } from "./input";
 
 interface IinputProps {
   id: string;
@@ -16,9 +17,9 @@ export const Input = ({
   register,
 }: IinputProps) => {
   return (
-    <>
+    <StyledDivInputs>
       <label htmlFor={id}>{label}</label>
       <input id={id} type={type} placeholder={placeholder} {...register} />
-    </>
+    </StyledDivInputs>
   );
 };

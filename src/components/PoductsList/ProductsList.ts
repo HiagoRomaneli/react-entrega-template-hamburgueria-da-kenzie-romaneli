@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const StyledListProducts = styled.ul`
-  width: 66%;
+  width: 100%;
   margin-top: 3.125rem;
-  max-width: 58.75rem;
+  max-width: 85.5rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 50px;
   align-items: center;
   justify-content: center;
 
   li {
-    width: 25%;
+    width: 18%;
     max-width: 18.75rem;
     height: 22.125rem;
     display: flex;

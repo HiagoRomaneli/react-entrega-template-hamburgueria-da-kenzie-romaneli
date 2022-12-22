@@ -18,6 +18,7 @@ export const Register = () => {
     reset,
     formState: { errors },
   } = useForm<Iregister>({
+    mode: "onBlur",
     resolver: yupResolver(SchemaRegister),
   });
   const navigate = useNavigate();

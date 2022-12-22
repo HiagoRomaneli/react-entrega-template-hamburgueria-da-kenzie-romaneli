@@ -94,7 +94,6 @@ export const CartProviders = ({ children }: IproductsContextProps) => {
       product.qntd++;
       setCurrentSale([...currentSale]);
     }
-    console.log(currentSale);
   };
 
   const removeQuantityProductsCart = (productId: number) => {
