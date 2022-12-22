@@ -8,7 +8,7 @@ export const StyledListProducts = styled.ul`
   flex-wrap: wrap;
   gap: 50px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   li {
     width: 18%;
